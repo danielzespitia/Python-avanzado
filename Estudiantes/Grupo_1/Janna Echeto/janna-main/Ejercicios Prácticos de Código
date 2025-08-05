@@ -1,0 +1,42 @@
+class CuentaBancaria:
+    def __init__(self, titular, saldo_inicial):
+        self.titular = titular
+        self.saldo = saldo_inicial
+        self.__numero_transacciones = 0
+
+    def depositar(self, cantidad):
+        if cantidad > 0:
+            self.saldo += cantidad
+            self.__numero_transacciones += 1
+            print(f"Depósito de ${cantidad} realizado con éxito.")
+        else:
+            print("La cantidad a depositar debe ser positiva.")
+
+    def retirar(self, cantidad):
+        if cantidad > 0:
+            if self.saldo >= cantidad:
+                self.saldo -= cantidad
+                self.__numero_transacciones += 1
+                print(f"Retiro de ${cantidad} realizado con éxito.")
+            else:
+                print("Fondos insuficientes para realizar el retiro.")
+        else:
+            print("La cantidad a retirar debe ser positiva.")
+
+    def mostrar_informacion(self):
+        print("\n--- Información de la Cuenta ---")
+        print(f"Titular: {self.titular}")
+        print(f"Saldo actual: ${self.saldo}")
+        print(f"Número total de transacciones: {self.__numero_transacciones}")
+        print("------------------------------")
+
+
+mi_cuenta = CuentaBancaria("Carlos Gómez", 2500)
+
+mi_cuenta.depositar(500)
+
+mi_cuenta.retirar(3500)
+
+mi_cuenta.retirar(1200)
+
+mi_cuenta.mostrar_informacion()

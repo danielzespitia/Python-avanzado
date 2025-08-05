@@ -1,0 +1,91 @@
+Atributos Públicos vs. Privados: 
+yo lo veo así: el nombre es como la cara de la moneda de nuestro producto, algo que se puede ver y cambiar sin mucho lío. No hay un "nombre malo" que nos estropee el inventario. 
+Pero con el __precio y el __stock, la cosa cambia. Es información delicada Si cualquiera pudiera meter la mano y poner un precio negativo o un stock de menos veinte, se cae todo el negocio
+Por eso los hacemos privados con ese doble guion bajo, __ asi obligamos a que cualquier ajuste se haga con un control, a través de métodos que sí validan que las cifras sean lógicas. Es para mayor seguridad
+para el producto no se vuelva un disparate
+
+Métodos "Setters":
+La función principal del set_precio() es ser el portero de la información. Él se encarga de que cuando quiera cambiar el precio, el nuevo valor sea válido y sensato. No es cosa de poner cualquier cifra sin pensar.
+si el precio se pudiera cambiar asi nada mas directamente (imagina: mi_producto.__precio = -50), Podrías terminar con precios absurdos o inventarios de locura. Eso nos llevaría a errores en
+los cálculos, ventas que no cuadran y, al final, un despelote en tus notas El "setter" es el guardián que protege la coherencia de los datos
+
+Lógica Unificada: 
+
+
+Predicción de Estado:
+ mi_producto = Producto("Lámpara", -20, 5)
+El precio real de la lámpara, según el código, será $0 (cero).
+Porque el código tiene una validación interna cuando se crea el producto. al intentar poner un precio de -20 
+un número negativo para un precio, la lógica dice stop y lo corrige automáticamente a 0. Además, te soltará una advertencia por consola para que sepas que el precio inicial 
+se ajustó por ser inválido. La cantidad de stock, que es 5, sí se establecerá sin problema, ya que es un valor válido.
+
+5), ¿cuál será el precio real del producto según el código y por qué?
+
+
+Ejercicios Prácticos de Código
+
+class Producto:
+    def __init__(self, nombre, precio_inicial, stock_inicial):
+        self.nombre = nombre
+        self.__precio = self._validar_precio(precio_inicial)
+        self.__stock = self._validar_stock(stock_inicial)
+
+    def _validar_precio(self, precio):
+        if precio >= 0:
+            return precio
+        print("Advertencia: El precio no puede ser negativo. Se establecerá en 0.")
+        return 0
+
+    def _validar_stock(self, stock):
+        if stock >= 0:
+            return stock
+        print("Advertencia: El stock no puede ser negativo. Se establecerá en 0.")
+        return 0
+
+    def get_precio(self):
+        return self.__precio
+
+    def set_precio(self, nuevo_precio):
+        if nuevo_precio >= 0:
+            self.__precio = nuevo_precio
+            print(f"Precio de {self.nombre} actualizado a ${self.__precio:.2f}.")
+        else:
+            print("Error: El precio no puede ser negativo.")
+
+    def get_stock(self):
+        return self.__stock
+
+    def actualizar_stock(self, cantidad):
+        if self.__stock + cantidad >= 0:
+            self.__stock += cantidad
+            print(f"Stock de {self.nombre} actualizado. Nuevo stock: {self.__stock} unidades.")
+        else:
+            print(f"Error: No se puede reducir el stock de {self.nombre} a un número negativo. Stock actual: {self.__stock} unidades.")
+
+    def vender(self, cantidad):
+        if cantidad > 0:
+            if self.__stock >= cantidad:
+                self.actualizar_stock(-cantidad)
+                print(f"Venta realizada: Se vendieron {cantidad} unidades de {self.nombre}.")
+            else:
+                print(f"No hay stock suficiente para vender {cantidad} unidades de {self.nombre}. Stock actual: {self.__stock} unidades.")
+        else:
+            print("La cantidad a vender debe ser un número positivo.")
+
+    def mostrar_informacion(self):
+        print(f"\n--- Información del Producto: {self.nombre} ---")
+        print(f"Precio: ${self.__precio:.2f}")
+        print(f"Stock disponible: {self.__stock} unidades")
+        print("-----------------------------------")
+
+
+teclado = Producto("Teclado Mecánico", 95, 30)
+teclado.mostrar_informacion()
+
+teclado.vender(5)
+
+teclado.actualizar_stock(10)
+
+teclado.set_precio(89.99)
+
+teclado.mostrar_informacion()

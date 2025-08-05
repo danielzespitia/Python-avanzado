@@ -1,0 +1,19 @@
+1 Escribe un programa que muestre tu nombre en la pantalla.
+
+2 Crea un programa que calcule y muestre el resultado de sumar 10 + 20.
+
+3 Escribe un programa que pregunte al usuario su nombre y luego lo salude con un "Hola, [nombre]".
+
+4 Crea un programa que muestre tu comida favorita en la pantalla.
+
+5 Escribe un programa que reste 5 a 15 y muestre el resultado.
+
+6 Crea un programa que pregunte al usuario cuántos años tiene y muestre el número en pantalla.
+
+7 Escribe un programa que muestre en pantalla el nombre de tu mascota o, si no tienes, el de una mascota que te gustaría tener.
+
+8 Crea un programa que multiplique 3 por 4 y muestre el resultado.
+
+9 Escribe un programa que pregunte al usuario cuál es su color favorito y responda "¡Qué buen gusto! El [color] es genial."
+
+10 Crea un programa que muestre la letra de tu canción favorita.
