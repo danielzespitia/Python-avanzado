@@ -33,12 +33,8 @@ class Empleado:
 
 # Clase Hija: Gerente hereda de Empleado
 class Gerente(Empleado):
-    """
-    Clase Hija. Un Gerente 'es un tipo de' Empleado, pero con un bono adicional.
-    """
+    
     def __init__(self, nombre, id_empleado, salario_base, bono_gestion):
-        # 'super()' llama al constructor de la clase padre (Empleado)
-        # para inicializar los atributos comunes.
         super().__init__(nombre, id_empleado, salario_base)
         self.bono_gestion = bono_gestion
 
