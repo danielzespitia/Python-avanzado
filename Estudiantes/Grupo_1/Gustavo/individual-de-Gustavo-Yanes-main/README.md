@@ -1,1 +1,0 @@
-# individual-de-Gustavo-Yanes
